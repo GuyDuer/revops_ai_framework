@@ -18,7 +18,7 @@ from botocore.exceptions import ClientError, BotoCoreError
 # Configuration
 AWS_PROFILE = "FireboltSystemAdministrator-740202120544"
 AWS_REGION = "us-east-1"
-KNOWLEDGE_BASE_ID = "F61WLOYZSW"  # RevOps Knowledge Base ID
+KNOWLEDGE_BASE_ID = "XXXXXXXXXX"  # RevOps Knowledge Base ID
 S3_BUCKET = "revops-ai-framework-kb-740202120544"
 S3_PREFIX = "knowledge-base/"
 
@@ -238,7 +238,7 @@ class KnowledgeBaseSync:
             # Start ingestion job
             response = self.bedrock_client.start_ingestion_job(
                 knowledgeBaseId=KNOWLEDGE_BASE_ID,
-                dataSourceId="0HMI5RHYUS",  # Default data source ID for S3
+                dataSourceId="XXXXXXXXXX",  # Default data source ID for S3
                 description=f"Automatic sync - {len(self.uploaded_files)} files updated at {datetime.now().isoformat()}"
             )
             
@@ -254,7 +254,7 @@ class KnowledgeBaseSync:
             while time.time() - start_time < max_wait_time:
                 job_response = self.bedrock_client.get_ingestion_job(
                     knowledgeBaseId=KNOWLEDGE_BASE_ID,
-                    dataSourceId="0HMI5RHYUS",
+                    dataSourceId="XXXXXXXXXX",
                     ingestionJobId=ingestion_job_id
                 )
                 

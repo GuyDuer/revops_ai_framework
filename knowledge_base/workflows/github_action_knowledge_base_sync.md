@@ -47,8 +47,8 @@ This document describes the automated GitHub Action workflow that synchronizes k
 **Conditions**: Only runs if S3 sync succeeds
 
 **Actions**:
-- Triggers ingestion job on knowledge base `F61WLOYZSW`
-- Uses data source `0HMI5RHYUS`
+- Triggers ingestion job on knowledge base `XXXXXXXXXX`
+- Uses data source `XXXXXXXXXX`
 - Provides descriptive job description with timestamp
 - Waits 5 seconds and reports initial status
 - Continues on Bedrock failures (doesn't fail the entire workflow)
@@ -177,7 +177,7 @@ The GitHub Action requires AWS credentials with the following permissions:
 
 ### AWS Console
 - S3 bucket: `revops-ai-framework-kb-740202120544/knowledge-base/`
-- Bedrock knowledge base: `F61WLOYZSW` (revops-schema-kb-1751466030)
+- Bedrock knowledge base: `XXXXXXXXXX` (revops-schema-kb-1751466030)
 - CloudWatch logs for ingestion job details
 
 ### Verification Steps

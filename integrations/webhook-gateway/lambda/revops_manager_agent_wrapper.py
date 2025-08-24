@@ -29,7 +29,7 @@ bedrock_agent_runtime = boto3.client(
 
 # Environment variables
 BEDROCK_AGENT_ID = os.environ.get('BEDROCK_AGENT_ID')
-BEDROCK_AGENT_ALIAS_ID = os.environ.get('BEDROCK_AGENT_ALIAS_ID', 'TSTALIASID')
+BEDROCK_AGENT_ALIAS_ID = os.environ.get('BEDROCK_AGENT_ALIAS_ID', 'XXXXXXXXXX')
 MAX_RETRIES = 3
 RETRY_DELAY = 2  # Initial retry delay in seconds
 

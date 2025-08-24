@@ -260,7 +260,7 @@ class HTTPAPIConversationAdapter:
                 "agents_involved": ["Manager"],
                 "agent_flow": [{
                     "agent_name": "Manager",
-                    "agent_id": "PVWGKOWSOT",
+                    "agent_id": "XXXXXXXXXX",
                     "start_time": datetime.fromtimestamp(api_metadata.start_time, tz=timezone.utc).isoformat(),
                     "end_time": datetime.now(timezone.utc).isoformat(),
                     "reasoning_text": f"API request processing for query: {api_metadata.original_query}",

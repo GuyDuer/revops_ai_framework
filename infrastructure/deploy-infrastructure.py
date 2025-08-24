@@ -256,8 +256,8 @@ class InfrastructureDeployer:
         # Get parameters from environment or prompt user
         parameters = {
             'ProjectName': 'revops-slack-bedrock',
-            'BedrockAgentId': manager_agent.get('agent_id', 'TCX9CGOKBR'),
-            'BedrockAgentAliasId': manager_agent.get('agent_alias_id', 'BKLREFH3L0')
+            'BedrockAgentId': manager_agent.get('agent_id', 'XXXXXXXXXX'),
+            'BedrockAgentAliasId': manager_agent.get('agent_alias_id', 'XXXXXXXXXX')
         }
         
         # Get Slack credentials (should be set as environment variables for security)

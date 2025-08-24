@@ -157,8 +157,8 @@ def update_lambda_functions(processor_zip_path, webhook_zip_path):
                 Environment={
                     'Variables': {
                         'S3_BUCKET': 'revops-ai-framework-kb-740202120544',
-                        'BEDROCK_AGENT_ID': 'PVWGKOWSOT',
-                        'BEDROCK_AGENT_ALIAS_ID': 'TSTALIASID',
+                        'BEDROCK_AGENT_ID': 'XXXXXXXXXX',
+                        'BEDROCK_AGENT_ALIAS_ID': 'XXXXXXXXXX',
                         'ENABLE_FULL_TRACING': 'true',
                         'LOG_LEVEL': 'INFO'
                     }
@@ -230,7 +230,7 @@ def create_test_conversation():
             "agents_involved": ["Manager", "DataAgent"],
             "agent_flow": [{
                 "agent_name": "Manager",
-                "agent_id": "PVWGKOWSOT",
+                "agent_id": "XXXXXXXXXX",
                 "start_time": datetime.utcnow().isoformat(),
                 "end_time": datetime.utcnow().isoformat(),
                 "reasoning_text": "Test reasoning with system prompt content to be stripped",

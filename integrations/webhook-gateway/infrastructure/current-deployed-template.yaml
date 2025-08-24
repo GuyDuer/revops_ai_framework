@@ -14,12 +14,12 @@ Parameters:
     
   BedrockAgentId:
     Type: String
-    Default: 'PVWGKOWSOT'
+    Default: 'XXXXXXXXXX'
     Description: Bedrock Agent ID for the Manager Agent
     
   BedrockAgentAliasId:
     Type: String
-    Default: 'TSTALIASID'
+    Default: 'XXXXXXXXXX'
     Description: Bedrock Agent Alias ID for the Manager Agent
     
   WebhookUrl:

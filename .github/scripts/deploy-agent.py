@@ -178,7 +178,7 @@ class AgentDeployer:
             print(f"   Collaboration: {agent_config['agentCollaboration']}")
             return True, {
                 'agent_id': 'DRY_RUN_AGENT_ID',
-                'agent_arn': 'arn:aws:bedrock:us-east-1:740202120544:agent/DRY_RUN_AGENT_ID'
+                'agent_arn': 'arn:aws:bedrock:YOUR_AWS_REGION:YOUR_AWS_ACCOUNT_ID:agent/DRY_RUN_AGENT_ID'
             }
         
         try:

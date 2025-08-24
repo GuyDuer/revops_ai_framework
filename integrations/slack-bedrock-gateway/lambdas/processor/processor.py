@@ -913,8 +913,8 @@ class CompleteSlackBedrockProcessor:
         # Agent configuration
         # V4 Manager Agent - intelligent router for specialized agent architecture
         # Using Manager Agent with full collaboration capabilities
-        self.decision_agent_id = os.environ.get('BEDROCK_AGENT_ID', 'PVWGKOWSOT')
-        self.decision_agent_alias_id = os.environ.get('BEDROCK_AGENT_ALIAS_ID', 'LH87RBMCUQ')
+        self.decision_agent_id = os.environ.get('BEDROCK_AGENT_ID', 'XXXXXXXXXX')
+        self.decision_agent_alias_id = os.environ.get('BEDROCK_AGENT_ALIAS_ID', 'XXXXXXXXXX')
         
         # Cache for secrets
         self._secrets_cache = {}

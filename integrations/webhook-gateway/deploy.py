@@ -51,7 +51,7 @@ class WebhookGatewayDeployer:
         
         try:
             # Check if Bedrock Agent exists
-            bedrock_agent_id = "PVWGKOWSOT"
+            bedrock_agent_id = "XXXXXXXXXX"
             try:
                 self.bedrock_agent.get_agent(agentId=bedrock_agent_id)
                 print(f"✓ Bedrock Agent '{bedrock_agent_id}' found")

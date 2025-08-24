@@ -126,7 +126,7 @@ class SimpleS3Exporter:
                 "agents_involved": ["Manager"],
                 "agent_flow": [{
                     "agent_name": "Manager",
-                    "agent_id": agent_response.get("source", "PVWGKOWSOT"),
+                    "agent_id": agent_response.get("source", "XXXXXXXXXX"),
                     "timing": {
                         "start_time": start_time.isoformat(),
                         "end_time": now.isoformat(),

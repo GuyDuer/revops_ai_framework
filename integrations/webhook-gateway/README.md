@@ -97,8 +97,8 @@ curl -X POST https://w3ir4f0ba8.execute-api.us-east-1.amazonaws.com/prod/webhook
 ## Environment Variables
 
 ### Manager Agent Wrapper (`revops-manager-agent-wrapper`)
-- `BEDROCK_AGENT_ID`: `PVWGKOWSOT` - Manager Agent ID
-- `BEDROCK_AGENT_ALIAS_ID`: `TSTALIASID` - Agent alias for routing
+- `BEDROCK_AGENT_ID`: `XXXXXXXXXX` - Manager Agent ID
+- `BEDROCK_AGENT_ALIAS_ID`: `XXXXXXXXXX` - Agent alias for routing
 - `LOG_LEVEL`: `INFO` - Logging verbosity
 
 ### Queue Processor (`revops-webhook`)
@@ -438,8 +438,8 @@ aws lambda update-function-configuration \
 aws lambda update-function-configuration \
   --function-name revops-manager-agent-wrapper \
   --environment 'Variables={
-    BEDROCK_AGENT_ID=PVWGKOWSOT,
-    BEDROCK_AGENT_ALIAS_ID=TSTALIASID,
+    BEDROCK_AGENT_ID=XXXXXXXXXX,
+    BEDROCK_AGENT_ALIAS_ID=XXXXXXXXXX,
     LOG_LEVEL=INFO
   }' \
   --timeout 900 \

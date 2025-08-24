@@ -21,8 +21,8 @@ AWS_REGION = "us-east-1"
 STACK_NAME = f"{PROJECT_NAME}-stack"
 
 # Bedrock Agent configuration from existing setup
-BEDROCK_AGENT_ID = "PVWGKOWSOT"
-BEDROCK_AGENT_ALIAS_ID = "LH87RBMCUQ"
+BEDROCK_AGENT_ID = "XXXXXXXXXX"
+BEDROCK_AGENT_ALIAS_ID = "XXXXXXXXXX"
 
 def load_slack_secrets():
     """Load Slack secrets from existing configuration"""

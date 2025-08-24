@@ -127,7 +127,7 @@ class AgentRegistry:
         
         # Agent ID mappings (from actual Bedrock agent IDs)
         self.agent_id_mapping = {
-            'PVWGKOWSOT': AgentType.MANAGER,  # Manager Agent
+            'XXXXXXXXXX': AgentType.MANAGER,  # Manager Agent
             '9B8EGU46UV': AgentType.DATA,    # Data Agent
             'TCX9CGOKBR': AgentType.DEAL_ANALYSIS,  # Deal Analysis Agent
             # Add other agent IDs as they're discovered

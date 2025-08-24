@@ -1,7 +1,7 @@
 {
   "foundation_model": "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
   "execution_role_arn": "arn:aws:iam::740202120544:role/AmazonBedrockExecutionRoleForAgents_revops",
-  "knowledge_base_id": "F61WLOYZSW",
+  "knowledge_base_id": "XXXXXXXXXX",
   "collaboration_type": "SUPERVISOR",
   "idle_session_ttl": 600,
   "region": "us-east-1",
@@ -12,12 +12,12 @@
     "arn:aws:iam::740202120544:policy/BedrockKnowledgeBasePolicy"
   ],
   "existing_agents": {
-    "manager_agent": "PVWGKOWSOT",
-    "data_agent": "NOJMSQ8JPT", 
-    "deal_analysis_agent": "DBHYUWC6U6",
-    "lead_analysis_agent": "IP9HPDIEPL",
-    "web_search_agent": "QKRQXXPJOJ",
-    "execution_agent": "AINAPUEIZU"
+    "manager_agent": "XXXXXXXXXX",
+    "data_agent": "XXXXXXXXXX", 
+    "deal_analysis_agent": "XXXXXXXXXX",
+    "lead_analysis_agent": "XXXXXXXXXX",
+    "web_search_agent": "XXXXXXXXXX",
+    "execution_agent": "XXXXXXXXXX"
   },
   "knowledge_base_config": {
     "name": "revops-schema-kb-1751466030",

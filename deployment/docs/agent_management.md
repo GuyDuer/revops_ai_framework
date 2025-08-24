@@ -47,17 +47,17 @@ For direct agent management, you can use AWS CLI commands. All agent IDs and con
 
 The V4 architecture includes:
 
-### Manager Agent (PVWGKOWSOT)
+### Manager Agent (XXXXXXXXXX)
 - **Role**: Supervisor and intelligent router
 - **Foundation Model**: Claude 3.7 Sonnet
 - **Collaborators**: DataAgent, DealAnalysisAgent, LeadAnalysisAgent, WebSearchAgent, ExecutionAgent
 
 ### Specialized Agents:
-- **DataAgent** (NOJMSQ8JPT): Data fetching and analysis
-- **DealAnalysisAgent** (DBHYUWC6U6): MEDDPICC deal assessment
-- **LeadAnalysisAgent** (IP9HPDIEPL): ICP analysis and engagement strategy
-- **WebSearchAgent** (QKRQXXPJOJ): External intelligence gathering
-- **ExecutionAgent** (AINAPUEIZU): Action execution and integration
+- **DataAgent** (XXXXXXXXXX): Data fetching and analysis
+- **DealAnalysisAgent** (XXXXXXXXXX): MEDDPICC deal assessment
+- **LeadAnalysisAgent** (XXXXXXXXXX): ICP analysis and engagement strategy
+- **WebSearchAgent** (XXXXXXXXXX): External intelligence gathering
+- **ExecutionAgent** (XXXXXXXXXX): Action execution and integration
 
 ## Agent Instructions
 

@@ -120,7 +120,7 @@ class WebhookConversationExporter:
                 "agents_involved": ["Manager"],
                 "agent_flow": [{
                     "agent_name": "Manager",
-                    "agent_id": "PVWGKOWSOT",
+                    "agent_id": "XXXXXXXXXX",
                     "timing": {
                         "start_time": datetime.fromtimestamp(start_time, tz=timezone.utc).isoformat(),
                         "end_time": now.isoformat(),
@@ -166,7 +166,7 @@ class WebhookConversationExporter:
                     },
                     "enhanced_agent_attribution": {
                         "agent_name": "Manager",
-                        "agent_id": "PVWGKOWSOT",
+                        "agent_id": "XXXXXXXXXX",
                         "confidence_score": 0.95,
                         "attribution_method": "webhook_direct_invocation",
                         "reasoning_quality": "high" if success else "low"

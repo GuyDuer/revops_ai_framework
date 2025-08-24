@@ -1,7 +1,7 @@
 {
   "region": "YOUR_AWS_REGION",
-  "bedrock_agent_id": "PVWGKOWSOT",
-  "bedrock_agent_alias_id": "TSTALIASID",
+  "bedrock_agent_id": "XXXXXXXXXX",
+  "bedrock_agent_alias_id": "XXXXXXXXXX",
   "lambda_functions": {
     "webhook_gateway": "prod-revops-webhook-gateway",
     "queue_processor": "revops-webhook",

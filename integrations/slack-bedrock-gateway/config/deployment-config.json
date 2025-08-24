@@ -11,41 +11,41 @@
     "account_id": "YOUR_AWS_ACCOUNT_ID"
   },
   "bedrock": {
-    "agent_id": "PVWGKOWSOT",
-    "agent_alias_id": "LH87RBMCUQ",
+    "agent_id": "XXXXXXXXXX",
+    "agent_alias_id": "XXXXXXXXXX",
     "agent_name": "Manager_Agent_V4",
     "agent_role": "SUPERVISOR",
     "collaborators": [
       {
         "name": "DataAgent",
-        "agent_id": "NOJMSQ8JPT",
-        "alias_id": "BHFBAW3YMM"
+        "agent_id": "XXXXXXXXXX",
+        "alias_id": "XXXXXXXXXX"
       },
       {
         "name": "DealAnalysisAgent",
-        "agent_id": "DBHYUWC6U6",
-        "alias_id": "SQQLCFQJUA"
+        "agent_id": "XXXXXXXXXX",
+        "alias_id": "XXXXXXXXXX"
       },
       {
         "name": "LeadAnalysisAgent",
-        "agent_id": "IP9HPDIEPL",
-        "alias_id": "FO8UT25HFA"
+        "agent_id": "XXXXXXXXXX",
+        "alias_id": "XXXXXXXXXX"
       },
       {
         "name": "WebSearchAgent", 
-        "agent_id": "QKRQXXPJOJ",
-        "alias_id": "P3UKIIHUPI"
+        "agent_id": "XXXXXXXXXX",
+        "alias_id": "XXXXXXXXXX"
       },
       {
         "name": "ExecutionAgent",
-        "agent_id": "AINAPUEIZU", 
-        "alias_id": "RD6YGAICP0"
+        "agent_id": "XXXXXXXXXX", 
+        "alias_id": "XXXXXXXXXX"
       }
     ]
   },
   "slack": {
-    "app_id": "A094GD826SD",
-    "client_id": "408423157009.9152450074897",
+    "app_id": "XXXXXXXXXX",
+    "client_id": "XXXXXXXXXX.XXXXXXXXXXXXX",
     "app_name": "RevBot",
     "scopes": [
       "chat:write",

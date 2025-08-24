@@ -100,8 +100,8 @@ jobs:
       run: |
         echo "Triggering Bedrock knowledge base ingestion..."
         
-        KNOWLEDGE_BASE_ID="F61WLOYZSW"
-        DATA_SOURCE_ID="0HMI5RHYUS"
+        KNOWLEDGE_BASE_ID="XXXXXXXXXX"
+        DATA_SOURCE_ID="XXXXXXXXXX"
         
         # Start ingestion job
         INGESTION_JOB_ID=$(aws bedrock-agent start-ingestion-job \

@@ -87,14 +87,14 @@ Both channels leverage 6 specialized AI agents built on Amazon Bedrock that anal
 ### Agent Specialization
 
 **DEDICATED AGENTS (Specific Use Cases):**
-- **Deal Analysis Agent** (`DBHYUWC6U6`): ONLY for deal status, MEDDPICC analysis, opportunity assessment
-- **Lead Analysis Agent** (`IP9HPDIEPL`): ONLY for lead qualification, ICP scoring, engagement strategies
+- **Deal Analysis Agent** (`XXXXXXXXXX`): ONLY for deal status, MEDDPICC analysis, opportunity assessment
+- **Lead Analysis Agent** (`XXXXXXXXXX`): ONLY for lead qualification, ICP scoring, engagement strategies
 
 **GENERAL AGENTS (Broad Capabilities):**
-- **Manager Agent** (`PVWGKOWSOT`): Routes requests and coordinates all other agents (SUPERVISOR)
-- **Data Agent** (`NOJMSQ8JPT`): General data queries across all revenue operations (Firebolt + Gong)
-- **Web Search Agent** (`QKRQXXPJOJ`): External intelligence and company research for any use case
-- **Execution Agent** (`AINAPUEIZU`): Actions and integrations for any workflow (Webhooks + Firebolt writes)
+- **Manager Agent** (`XXXXXXXXXX`): Routes requests and coordinates all other agents (SUPERVISOR)
+- **Data Agent** (`XXXXXXXXXX`): General data queries across all revenue operations (Firebolt + Gong)
+- **Web Search Agent** (`XXXXXXXXXX`): External intelligence and company research for any use case
+- **Execution Agent** (`XXXXXXXXXX`): Actions and integrations for any workflow (Webhooks + Firebolt writes)
 
 ### Routing Logic Examples
 - "Status of IXIS deal" → Routes to Deal Analysis Agent (dedicated)
@@ -183,11 +183,11 @@ Both channels leverage 6 specialized AI agents built on Amazon Bedrock that anal
 └─ Output: Manager Agent invocation
 
 00:05 - PROCESSOR LAMBDA → MANAGER AGENT (BEDROCK)
-├─ Component: Amazon Bedrock Agent (PVWGKOWSOT)
+├─ Component: Amazon Bedrock Agent (XXXXXXXXXX)
 ├─ Model: Claude 3.7 Sonnet with inference profile
 ├─ Function: Intelligent routing and workflow coordination
 ├─ Agent Type: SUPERVISOR
-├─ Knowledge Base: F61WLOYZSW (Firebolt schema, business logic)
+├─ Knowledge Base: XXXXXXXXXX (Firebolt schema, business logic)
 ├─ Input: {"user_message": "what is the status of the IXIS deal?"}
 ├─ Processing:
 │  ├─ 1. Analyze query intent: "deal status" → Deal Analysis Agent needed
@@ -198,7 +198,7 @@ Both channels leverage 6 specialized AI agents built on Amazon Bedrock that anal
 └─ Output: Deal Analysis Agent invocation with routing context
 
 00:07 - MANAGER AGENT → DEAL ANALYSIS AGENT (BEDROCK)
-├─ Component: Amazon Bedrock Agent (DBHYUWC6U6)
+├─ Component: Amazon Bedrock Agent (XXXXXXXXXX)
 ├─ Model: Claude 3.7 Sonnet with inference profile
 ├─ Function: MEDDPICC analysis and deal assessment
 ├─ Agent Type: COLLABORATOR (dedicated specialist)
@@ -508,8 +508,8 @@ Both channels leverage 6 specialized AI agents built on Amazon Bedrock that anal
 │  ├─ 4. Invoke Manager Agent via Bedrock Runtime
 │  └─ 5. Handle Bedrock API responses and errors
 ├─ Bedrock Configuration:
-│  ├─ Agent ID: PVWGKOWSOT
-│  ├─ Agent Alias: TSTALIASID
+│  ├─ Agent ID: XXXXXXXXXX
+│  ├─ Agent Alias: XXXXXXXXXX
 │  ├─ Session timeout: 15 minutes
 │  └─ Enable conversation tracing
 └─ Output: Manager Agent processing via Bedrock
@@ -518,11 +518,11 @@ Both channels leverage 6 specialized AI agents built on Amazon Bedrock that anal
 #### Phase 3: AI Processing and Data Retrieval (5-35 seconds)
 ```
 00:05 - MANAGER AGENT WRAPPER → MANAGER AGENT (BEDROCK)
-├─ Component: Amazon Bedrock Agent (PVWGKOWSOT)
+├─ Component: Amazon Bedrock Agent (XXXXXXXXXX)
 ├─ Model: Claude 3.7 Sonnet with inference profile
 ├─ Function: Query analysis and agent routing
 ├─ Agent Type: SUPERVISOR
-├─ Knowledge Base: F61WLOYZSW (revenue operations knowledge)
+├─ Knowledge Base: XXXXXXXXXX (revenue operations knowledge)
 ├─ Input: {"user_message": "What deals are closing this quarter?"}
 ├─ Processing:
 │  ├─ 1. Analyze query intent: "quarterly deal pipeline" → Data Agent needed
@@ -533,7 +533,7 @@ Both channels leverage 6 specialized AI agents built on Amazon Bedrock that anal
 └─ Output: Data Agent invocation with pipeline analysis request
 
 00:07 - MANAGER AGENT → DATA AGENT (BEDROCK)
-├─ Component: Amazon Bedrock Agent (NOJMSQ8JPT)
+├─ Component: Amazon Bedrock Agent (XXXXXXXXXX)
 ├─ Model: Claude 3.7 Sonnet with inference profile
 ├─ Function: Data retrieval and analytics across revenue operations
 ├─ Agent Type: COLLABORATOR (general-purpose)
@@ -775,12 +775,12 @@ Both channels leverage 6 specialized AI agents built on Amazon Bedrock that anal
 - **Manager Agent Wrapper**: Bedrock API integration, error handling, session management
 
 #### AI Layer Components
-- **Manager Agent (PVWGKOWSOT)**: Query routing, workflow coordination, response synthesis
-- **Deal Analysis Agent (DBHYUWC6U6)**: MEDDPICC analysis, deal assessment, risk evaluation
-- **Lead Analysis Agent (IP9HPDIEPL)**: ICP scoring, qualification, engagement strategies  
-- **Data Agent (NOJMSQ8JPT)**: SQL execution, data analysis, multi-source aggregation
-- **Web Search Agent (QKRQXXPJOJ)**: External intelligence, company research
-- **Execution Agent (AINAPUEIZU)**: Action execution, webhook delivery, integrations
+- **Manager Agent (XXXXXXXXXX)**: Query routing, workflow coordination, response synthesis
+- **Deal Analysis Agent (XXXXXXXXXX)**: MEDDPICC analysis, deal assessment, risk evaluation
+- **Lead Analysis Agent (XXXXXXXXXX)**: ICP scoring, qualification, engagement strategies  
+- **Data Agent (XXXXXXXXXX)**: SQL execution, data analysis, multi-source aggregation
+- **Web Search Agent (XXXXXXXXXX)**: External intelligence, company research
+- **Execution Agent (XXXXXXXXXX)**: Action execution, webhook delivery, integrations
 
 #### Data Layer Components
 - **Firebolt Lambda**: SQL query execution, connection management, result formatting
@@ -1010,7 +1010,7 @@ aws logs filter-log-events \
 **1. Agent Not Responding**
 ```bash
 # Check agent status
-aws bedrock-agent get-agent --agent-id PVWGKOWSOT --region YOUR_AWS_REGION
+aws bedrock-agent get-agent --agent-id XXXXXXXXXX --region YOUR_AWS_REGION
 
 # Verify IAM permissions
 aws iam get-role --role-name prod-revops-manager-agent-wrapper-role
@@ -1066,7 +1066,7 @@ aws lambda invoke --function-name revops-gong-retrieval \
   /tmp/gong_test.json
 
 # Verify knowledge base ingestion
-aws bedrock-agent get-knowledge-base --knowledge-base-id F61WLOYZSW --region YOUR_AWS_REGION
+aws bedrock-agent get-knowledge-base --knowledge-base-id XXXXXXXXXX --region YOUR_AWS_REGION
 ```
 
 **5. Webhook Delivery Failures**
@@ -1175,6 +1175,6 @@ python3 deploy.py --agent lead_analysis
 ### Key Resources
 - **AWS Profile**: `YOUR_AWS_PROFILE_NAME`
 - **Region**: `YOUR_AWS_REGION`
-- **Knowledge Base**: `F61WLOYZSW`
+- **Knowledge Base**: `XXXXXXXXXX`
 - **S3 Bucket**: `revops-ai-framework-kb-YOUR_AWS_ACCOUNT_ID`
-- **Manager Agent**: `PVWGKOWSOT`
+- **Manager Agent**: `XXXXXXXXXX`

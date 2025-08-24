@@ -183,8 +183,8 @@ The knowledge base sync uses **OpenID Connect (OIDC)** for secure, token-less au
         "bedrock:ListIngestionJobs"
       ],
       "Resource": [
-        "arn:aws:bedrock:us-east-1:740202120544:knowledge-base/F61WLOYZSW",
-        "arn:aws:bedrock:us-east-1:740202120544:knowledge-base/F61WLOYZSW/data-source/0HMI5RHYUS"
+        "arn:aws:bedrock:us-east-1:740202120544:knowledge-base/XXXXXXXXXX",
+        "arn:aws:bedrock:us-east-1:740202120544:knowledge-base/XXXXXXXXXX/data-source/XXXXXXXXXX"
       ]
     }
   ]
@@ -319,8 +319,8 @@ permissions:
 - **Purpose**: Knowledge base file storage
 - **Encryption**: AWS managed (SSE-S3)
 
-**Bedrock Knowledge Base**: `F61WLOYZSW`
-- **Data Source**: `0HMI5RHYUS`
+**Bedrock Knowledge Base**: `XXXXXXXXXX`
+- **Data Source**: `XXXXXXXXXX`
 - **Vector Store**: Amazon OpenSearch Serverless
 - **Embedding Model**: Amazon Titan Text Embeddings
 
