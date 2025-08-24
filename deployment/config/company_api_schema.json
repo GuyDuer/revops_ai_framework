@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Company Data Warehouse Query API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/query": {
+      "post": {
+        "summary": "Execute SQL query against company data warehouse",
+        "operationId": "execute_query",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "SQL query to execute against company data warehouse"
+                  }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Query results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean"},
+                    "results": {
+                      "type": "array",
+                      "items": {"type": "object"}
+                    },
+                    "error": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

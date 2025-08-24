@@ -1,0 +1,195 @@
+name: "Deploy Agent to AWS"
+
+on:
+  workflow_dispatch:
+    inputs:
+      agent_name:
+        description: 'Name of the agent directory to deploy (use "List Available Agents" workflow to see options)'
+        required: true
+        type: string
+
+jobs:
+  deploy-agent-to-aws:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # Required for OIDC
+      contents: read    # Required to checkout repository
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::740202120544:role/GitHubActionsRevOpsKBSyncRole
+        role-session-name: GitHubActionsAgentDeploy
+        aws-region: us-east-1
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install Python dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install boto3 botocore
+    
+    - name: List available agents and validate selection
+      id: validate
+      run: |
+        echo "📋 Available Agent Directories:"
+        echo "==============================="
+        
+        # List all agent directories with details
+        AGENT_COUNT=0
+        for dir in agents/*/; do
+          if [ -d "$dir" ]; then
+            AGENT_COUNT=$((AGENT_COUNT + 1))
+            AGENT_NAME=$(basename "$dir")
+            INSTRUCTIONS_FILE="${dir}instructions.md"
+            
+            if [ -f "$INSTRUCTIONS_FILE" ]; then
+              # Check if instructions are customized
+              if grep -q "<AGENT_NAME>" "$INSTRUCTIONS_FILE" 2>/dev/null; then
+                STATUS="⚠️  Template (needs customization)"
+              else
+                STATUS="✅ Ready for deployment"
+              fi
+            else
+              STATUS="❌ Missing instructions.md"
+            fi
+            
+            echo "  ${AGENT_COUNT}. ${AGENT_NAME} - ${STATUS}"
+          fi
+        done
+        
+        if [ $AGENT_COUNT -eq 0 ]; then
+          echo "  No agent directories found in agents/"
+          echo ""
+          echo "💡 Use the 'Create New Agent' workflow to create an agent first"
+          exit 1
+        fi
+        
+        echo ""
+        echo "🔍 Validating selected agent: ${{ github.event.inputs.agent_name }}"
+        echo "=================================================================="
+        
+        AGENT_DIR="agents/${{ github.event.inputs.agent_name }}"
+        INSTRUCTIONS_FILE="${AGENT_DIR}/instructions.md"
+        
+        # Check if selected agent directory exists
+        if [ ! -d "${AGENT_DIR}" ]; then
+          echo "❌ Error: Agent directory '${AGENT_DIR}' does not exist"
+          echo ""
+          echo "Please select one of the available agents listed above."
+          exit 1
+        fi
+        
+        # Check if instructions.md exists
+        if [ ! -f "${INSTRUCTIONS_FILE}" ]; then
+          echo "❌ Error: Instructions file '${INSTRUCTIONS_FILE}' does not exist"
+          echo "Directory contents:"
+          ls -la "${AGENT_DIR}/"
+          exit 1
+        fi
+        
+        # Check if instructions.md is not empty and not just the template
+        if [ ! -s "${INSTRUCTIONS_FILE}" ]; then
+          echo "❌ Error: Instructions file '${INSTRUCTIONS_FILE}' is empty"
+          exit 1
+        fi
+        
+        # Check if it still contains template placeholders (basic check)
+        if grep -q "<AGENT_NAME>" "${INSTRUCTIONS_FILE}"; then
+          echo "❌ Error: Instructions file contains template placeholders"
+          echo "Please customize the instructions before deployment"
+          echo "Replace all [CUSTOMIZE: ...] placeholders in ${INSTRUCTIONS_FILE}"
+          exit 1
+        fi
+        
+        echo "✅ Agent directory validation passed"
+        echo "agent-dir=${AGENT_DIR}" >> $GITHUB_OUTPUT
+        echo "instructions-file=${INSTRUCTIONS_FILE}" >> $GITHUB_OUTPUT
+    
+    - name: Deploy agent to AWS
+      id: deploy
+      run: |
+        echo "🚀 Deploying agent to AWS Bedrock (Sandbox Environment)"
+        echo "========================================================"
+        
+        python3 .github/scripts/deploy-agent.py \
+          --agent-name "${{ github.event.inputs.agent_name }}" \
+          --environment "sandbox" \
+          --agent-dir "${{ steps.validate.outputs.agent-dir }}" \
+          --instructions-file "${{ steps.validate.outputs.instructions-file }}"
+    
+    - name: Post-deployment validation
+      if: steps.deploy.outcome == 'success'
+      run: |
+        echo "🧪 Running post-deployment validation..."
+        
+        # Get agent details from deployment output
+        if [ -f "/tmp/agent_deployment_output.json" ]; then
+          AGENT_ID=$(python3 -c "import json; data=json.load(open('/tmp/agent_deployment_output.json')); print(data.get('agent_id', ''))" 2>/dev/null || echo "")
+          
+          if [ -n "$AGENT_ID" ]; then
+            echo "🔍 Validating agent ${AGENT_ID}..."
+            
+            # Check agent status
+            AGENT_STATUS=$(aws bedrock-agent get-agent \
+              --agent-id "$AGENT_ID" \
+              --region us-east-1 \
+              --query 'agent.agentStatus' \
+              --output text 2>/dev/null || echo "ERROR")
+            
+            if [ "$AGENT_STATUS" == "PREPARED" ] || [ "$AGENT_STATUS" == "NOT_PREPARED" ]; then
+              echo "✅ Agent status: $AGENT_STATUS"
+            else
+              echo "⚠️  Agent status: $AGENT_STATUS (may need time to initialize)"
+            fi
+            
+            echo "✅ Post-deployment validation completed"
+          else
+            echo "⚠️  Could not extract agent ID from deployment output"
+          fi
+        else
+          echo "⚠️  No deployment output file found"
+        fi
+    
+    - name: Deployment summary
+      if: always()
+      run: |
+        echo "📋 Agent Deployment Summary"
+        echo "============================"
+        echo "🤖 Agent Name: ${{ github.event.inputs.agent_name }}"
+        echo "🌍 Environment: Sandbox (Account: 740202120544)"
+        echo "📁 Agent Directory: ${{ steps.validate.outputs.agent-dir }}"
+        
+        if [ "${{ steps.deploy.outcome }}" == "success" ]; then
+          echo "✅ Deployment completed successfully"
+          
+          # Show deployment details if available
+          if [ -f "/tmp/agent_deployment_output.json" ]; then
+            echo ""
+            echo "📊 Deployment Details:"
+            echo "======================"
+            echo "Agent ID: $(python3 -c "import json; print(json.load(open('/tmp/agent_deployment_output.json')).get('agent_id', 'N/A'))" 2>/dev/null || echo 'N/A')"
+            echo "Agent ARN: $(python3 -c "import json; print(json.load(open('/tmp/agent_deployment_output.json')).get('agent_arn', 'N/A'))" 2>/dev/null || echo 'N/A')"
+            echo "Foundation Model: $(python3 -c "import json; print(json.load(open('/tmp/agent_deployment_output.json')).get('foundation_model', 'N/A'))" 2>/dev/null || echo 'N/A')"
+            echo "Knowledge Base: $(python3 -c "import json; print(json.load(open('/tmp/agent_deployment_output.json')).get('knowledge_base_id', 'N/A'))" 2>/dev/null || echo 'N/A')"
+          fi
+          
+          echo ""
+          echo "🔧 Next Steps:"
+          echo "1. Test the agent through the RevOps AI Framework"
+          echo "2. Monitor CloudWatch logs for agent execution"
+          echo "3. Update agent instructions if needed and redeploy"
+          echo "4. Agent is ready for use in Sandbox environment"
+        else
+          echo "❌ Deployment failed"
+          echo "📝 Check the logs above for error details"
+        fi
